@@ -1307,7 +1307,7 @@ MonoBehaviour:
   gameOverPopup: {fileID: 417215421}
   resultText: {fileID: 2025437188}
   durationText: {fileID: 639284361}
-  settingsPopup: {fileID: 417215421}
+  settingsPopup: {fileID: 965578147}
 --- !u!4 &445021012
 Transform:
   m_ObjectHideFlags: 0
