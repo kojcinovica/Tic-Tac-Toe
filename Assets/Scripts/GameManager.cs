@@ -2,11 +2,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
     [Header("Board")]
     public Button[] cells;
+
+    [Header("Strike Line")]
+    public RectTransform strikeLine;
 
     [Header("HUD")]
     public TextMeshProUGUI timerText;
@@ -23,8 +27,9 @@ public class GameManager : MonoBehaviour
 
     private string currentPlayer = "X";
 
-    private string[] board =
-        new string[9];
+    private string[] board = new string[9];
+
+    private int[] winningCells;
 
     private int player1Moves = 0;
     private int player2Moves = 0;
@@ -117,32 +122,38 @@ public class GameManager : MonoBehaviour
     {
         int[,] winPatterns =
         {
-            {0,1,2},
-            {3,4,5},
-            {6,7,8},
+        {0,1,2},
+        {3,4,5},
+        {6,7,8},
 
-            {0,3,6},
-            {1,4,7},
-            {2,5,8},
+        {0,3,6},
+        {1,4,7},
+        {2,5,8},
 
-            {0,4,8},
-            {2,4,6}
-        };
+        {0,4,8},
+        {2,4,6}
+    };
 
         for (int i = 0; i < 8; i++)
         {
-            string a =
-                board[winPatterns[i, 0]];
+            int a = winPatterns[i, 0];
+            int b = winPatterns[i, 1];
+            int c = winPatterns[i, 2];
 
-            string b =
-                board[winPatterns[i, 1]];
-
-            string c =
-                board[winPatterns[i, 2]];
-
-            if (a != "" && a == b && b == c)
+            if (board[a] != "" &&
+                board[a] == board[b] &&
+                board[b] == board[c])
             {
-                EndGame(a + " Wins");
+                winningCells =
+                    new int[] { a, b, c };
+
+                StartCoroutine(AnimateStrikeLine(a, b, c));
+
+                StartCoroutine(
+                    EndGameWithDelay(
+                        board[a] + " Wins"
+                    )
+                );
                 return;
             }
         }
@@ -156,9 +167,104 @@ public class GameManager : MonoBehaviour
         }
 
         if (draw)
-        {
             EndGame("Draw");
+    }
+
+    IEnumerator EndGameWithDelay(string result)
+    {
+        yield return new WaitForSeconds(0.4f);
+
+        EndGame(result);
+    }
+
+    IEnumerator AnimateStrikeLine(int a, int b, int c)
+    {
+        strikeLine.gameObject.SetActive(true);
+
+        Vector3 posA =
+            cells[a].transform.position;
+
+        Vector3 posC =
+            cells[c].transform.position;
+
+        // Start from FIRST cell
+        strikeLine.position = posA;
+
+        Vector3 direction =
+            posC - posA;
+
+        float angle =
+            Mathf.Atan2(
+                direction.y,
+                direction.x)
+            * Mathf.Rad2Deg;
+
+        strikeLine.rotation =
+            Quaternion.Euler(0, 0, angle);
+
+        float fullDistance =
+            Vector3.Distance(posA, posC);
+
+        float time = 0f;
+        float duration = 0.3f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+
+            float width =
+                Mathf.Lerp(
+                    0,
+                    fullDistance,
+                    time / duration
+                );
+
+            strikeLine.sizeDelta =
+                new Vector2(width, 20f);
+
+            yield return null;
         }
+
+        strikeLine.sizeDelta =
+            new Vector2(fullDistance, 20f);
+    }
+
+    void ShowStrikeLine(int a, int b, int c)
+    {
+        strikeLine.gameObject.SetActive(true);
+
+        Vector3 posA =
+            cells[a].transform.position;
+
+        Vector3 posC =
+            cells[c].transform.position;
+
+        Vector3 center =
+            (posA + posC) / 2f;
+
+        strikeLine.position = center;
+
+        float distance =
+            Vector3.Distance(posA, posC);
+
+        strikeLine.sizeDelta =
+            new Vector2(distance, 20f);
+
+        Vector3 direction =
+            posC - posA;
+
+        float angle =
+            Mathf.Atan2(
+                direction.y,
+                direction.x)
+            * Mathf.Rad2Deg;
+
+        strikeLine.rotation =
+            Quaternion.Euler(
+                0,
+                0,
+                angle
+            );
     }
 
     // =========================
