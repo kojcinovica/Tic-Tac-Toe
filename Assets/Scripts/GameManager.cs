@@ -194,7 +194,7 @@ public class GameManager : MonoBehaviour
 
     public void ExitGame()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("PlayScene");
     }
 
     public void OpenSettings()
