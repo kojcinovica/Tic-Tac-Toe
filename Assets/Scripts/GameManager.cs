@@ -90,6 +90,9 @@ public class GameManager : MonoBehaviour
 
         board[index] = currentPlayer;
 
+        AudioManager.Instance.PlayPlacement();
+
+
         cells[index]
             .GetComponentInChildren<TextMeshProUGUI>()
             .text = currentPlayer;
@@ -146,6 +149,8 @@ public class GameManager : MonoBehaviour
             {
                 winningCells =
                     new int[] { a, b, c };
+
+                AudioManager.Instance.PlayStrike();
 
                 StartCoroutine(AnimateStrikeLine(a, b, c));
 
@@ -282,6 +287,9 @@ public class GameManager : MonoBehaviour
             + timer.ToString("F1")
             + "s";
 
+        AudioManager.Instance.PlayPopup();
+
+
         gameOverPopup.SetActive(true);
 
         SaveStats(result);
@@ -293,6 +301,8 @@ public class GameManager : MonoBehaviour
 
     public void RetryGame()
     {
+        AudioManager.Instance.PlayButton();
+
         SceneManager.LoadScene(
             SceneManager.GetActiveScene().name
         );
@@ -300,17 +310,28 @@ public class GameManager : MonoBehaviour
 
     public void ExitGame()
     {
+        AudioManager.Instance.PlayButton();
+
         SceneManager.LoadScene("PlayScene");
     }
 
     public void OpenSettings()
     {
+        AudioManager.Instance.PlayButton();
+
         settingsPopup.SetActive(true);
+
+        AudioManager.Instance.PlayPopup();
     }
 
     public void CloseSettings()
     {
+        AudioManager.Instance.PlayButton();
+
         settingsPopup.SetActive(false);
+
+        AudioManager.Instance.PlayPopup();
+
     }
 
     // =========================

@@ -28,33 +28,55 @@ public class UIManager : MonoBehaviour
     {
         LoadSettings();
         LoadStats();
+        musicToggle.isOn =
+        AudioManager.Instance.IsMusicEnabled();
+
+        sfxToggle.isOn =
+            AudioManager.Instance.IsSFXEnabled();
     }
 
     // MAIN BUTTONS
 
     public void OnPlayClicked()
     {
+        AudioManager.Instance.PlayButton();
+
         CloseAllPopups();
+
         themePopup.SetActive(true);
+
+        AudioManager.Instance.PlayPopup();
     }
 
     public void OnStatsClicked()
     {
+        AudioManager.Instance.PlayButton();
         CloseAllPopups();
         LoadStats();
         statsPopup.SetActive(true);
+        AudioManager.Instance.PlayPopup();
     }
 
     public void OnSettingsClicked()
     {
+        AudioManager.Instance.PlayButton();
+
         CloseAllPopups();
+
         settingsPopup.SetActive(true);
+
+        AudioManager.Instance.PlayPopup();
     }
 
     public void OnExitClicked()
     {
+        AudioManager.Instance.PlayButton();
+
         CloseAllPopups();
+
         exitPopup.SetActive(true);
+
+        AudioManager.Instance.PlayPopup();
     }
 
     // POPUP BUTTONS
@@ -66,6 +88,8 @@ public class UIManager : MonoBehaviour
 
     public void OnClosePopup(GameObject popup)
     {
+        AudioManager.Instance.PlayButton();
+
         popup.SetActive(false);
     }
 
@@ -87,12 +111,12 @@ public class UIManager : MonoBehaviour
 
     public void OnMusicToggleChanged(bool isOn)
     {
-        PlayerPrefs.SetInt("MusicEnabled", isOn ? 1 : 0);
+        AudioManager.Instance.SetMusic(isOn);
     }
 
     public void OnSFXToggleChanged(bool isOn)
     {
-        PlayerPrefs.SetInt("SFXEnabled", isOn ? 1 : 0);
+        AudioManager.Instance.SetSFX(isOn);
     }
 
     void LoadSettings()
