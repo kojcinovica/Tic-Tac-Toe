@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public GameObject themePopup;
     public GameObject statsPopup;
     public GameObject settingsPopup;
+    public GameObject creditsPopup;
     public GameObject exitPopup;
 
     [Header("Stats Text")]
@@ -59,6 +60,14 @@ public class UIManager : MonoBehaviour
         CloseAllPopups();
         LoadStats();
         statsPopup.SetActive(true);
+        AudioManager.Instance.PlayPopup();
+    }
+
+    public void OnCreditsClicked()
+    {
+        AudioManager.Instance.PlayButton();
+        CloseAllPopups();
+        creditsPopup.SetActive(true);
         AudioManager.Instance.PlayPopup();
     }
 
