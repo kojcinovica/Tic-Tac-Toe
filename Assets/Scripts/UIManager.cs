@@ -18,9 +18,9 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI drawsText;
     public TextMeshProUGUI avgDurationText;
 
-    [Header("Settings Toggles")]
-    public Toggle musicToggle;
-    public Toggle sfxToggle;
+    //[Header("Settings Toggles")]
+    //public Toggle musicToggle;
+    //public Toggle sfxToggle;
 
     private const string GAME_SCENE = "GameScene";
 
@@ -28,11 +28,11 @@ public class UIManager : MonoBehaviour
     {
         LoadSettings();
         LoadStats();
-        musicToggle.isOn =
-        AudioManager.Instance.IsMusicEnabled();
+        //musicToggle.isOn =
+        //AudioManager.Instance.IsMusicEnabled();
 
-        sfxToggle.isOn =
-            AudioManager.Instance.IsSFXEnabled();
+        //sfxToggle.isOn =
+           // AudioManager.Instance.IsSFXEnabled();
     }
 
     // MAIN BUTTONS
@@ -121,11 +121,11 @@ public class UIManager : MonoBehaviour
 
     void LoadSettings()
     {
-        musicToggle.isOn =
-            PlayerPrefs.GetInt("MusicEnabled", 1) == 1;
+        //musicToggle.isOn =
+        //    PlayerPrefs.GetInt("MusicEnabled", 1) == 1;
 
-        sfxToggle.isOn =
-            PlayerPrefs.GetInt("SFXEnabled", 1) == 1;
+        //sfxToggle.isOn =
+        //    PlayerPrefs.GetInt("SFXEnabled", 1) == 1;
     }
 
     // STATS

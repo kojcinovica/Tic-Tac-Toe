@@ -74,15 +74,19 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayMusic(AudioClip clip)
+   public void PlayMusic(AudioClip clip)
+{
+    if (musicSource.clip == clip)
     {
-        if (musicSource.clip == clip)
-            return;
-
-        musicSource.clip = clip;
-        musicSource.loop = true;
-        musicSource.Play();
+        if (!musicSource.isPlaying)
+            musicSource.Play(); // 🔥 this fixes your issue
+        return;
     }
+
+    musicSource.clip = clip;
+    musicSource.loop = true;
+    musicSource.Play();
+}
 
     // =========================
     // SFX
