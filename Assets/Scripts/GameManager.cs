@@ -320,7 +320,7 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlayButton();
 
         settingsPopup.SetActive(true);
-
+        
         AudioManager.Instance.PlayPopup();
     }
 
