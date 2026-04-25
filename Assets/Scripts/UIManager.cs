@@ -37,6 +37,11 @@ public class UIManager : MonoBehaviour
 
     // MAIN BUTTONS
 
+    public void SelectTheme(int index)
+    {
+        ThemeManager.Instance.SetTheme(index);
+    }
+
     public void OnPlayClicked()
     {
         AudioManager.Instance.PlayButton();

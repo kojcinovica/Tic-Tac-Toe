@@ -6,6 +6,9 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+
+    XOTheme currentTheme;
+
     [Header("Board")]
     public Button[] cells;
 
@@ -40,6 +43,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        currentTheme = ThemeManager.Instance.GetCurrentTheme();
+        Debug.Log("Theme: " + currentTheme);
+        Debug.Log("X Sprite: " + currentTheme.xSprite);
+        Debug.Log("O Sprite: " + currentTheme.oSprite);
+
         InitializeBoard();
     }
 
@@ -60,16 +68,13 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < cells.Length; i++)
         {
-            int index = i;
-
-            cells[i].onClick.AddListener(
-                () => OnCellClicked(index)
-            );
-
             board[i] = "";
-            cells[i]
-                .GetComponentInChildren<TextMeshProUGUI>()
-                .text = "";
+
+            Image cellImage =
+                cells[i]
+                    .GetComponentInChildren<Image>();
+
+            cellImage.sprite = null;
         }
 
         gameOverPopup.SetActive(false);
@@ -80,7 +85,7 @@ public class GameManager : MonoBehaviour
     // CELL CLICK
     // =========================
 
-    void OnCellClicked(int index)
+    public void OnCellClicked(int index)
     {
         if (gameEnded)
             return;
@@ -90,12 +95,22 @@ public class GameManager : MonoBehaviour
 
         board[index] = currentPlayer;
 
-        AudioManager.Instance.PlayPlacement();
+        Image cellImage =
+            cells[index]
+                .GetComponentInChildren<Image>();
 
+        if (currentPlayer == "X")
+        {
+            cellImage.sprite =
+                currentTheme.xSprite;
+        }
+        else
+        {
+            cellImage.sprite =
+                currentTheme.oSprite;
+        }
 
-        cells[index]
-            .GetComponentInChildren<TextMeshProUGUI>()
-            .text = currentPlayer;
+        CheckWinner();
 
         if (currentPlayer == "X")
         {
