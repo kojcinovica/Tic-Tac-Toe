@@ -90,6 +90,8 @@ public class GameManager : MonoBehaviour
         if (gameEnded)
             return;
 
+        AudioManager.Instance.PlayPlacement();
+
         if (board[index] != "")
             return;
 
@@ -192,7 +194,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator EndGameWithDelay(string result)
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(1f);
 
         EndGame(result);
     }
