@@ -1,4 +1,4 @@
-**Tic Tac Toe – v1**
+**Tic Tac Toe**
 
 **Overview**
 
@@ -15,6 +15,9 @@ Mouse: Click or tap on a grid cell to place your mark (X or O)
 
 **How to Play**
 - The game is played on a 3×3 grid.
+- Before you start a game, select a Theme and then press play button
 - Players take turns placing their marks (X or O).
 - The first player to align three marks horizontally, vertically, or diagonally wins.
 - If all cells are filled and no player has three in a row, the game ends in a draw.
+
+Feel free to try it on: [itch.io](https://strawberryjamteam.itch.io/tic-tac-toe)
