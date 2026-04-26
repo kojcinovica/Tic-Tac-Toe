@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
            // AudioManager.Instance.IsSFXEnabled();
     }
 
-    // MAIN BUTTONS
+    //  Main Buttons Hanlder
 
     public void SelectTheme(int index)
     {
@@ -93,7 +93,7 @@ public class UIManager : MonoBehaviour
         AudioManager.Instance.PlayPopup();
     }
 
-    // POPUP BUTTONS
+    // PopUps Handlers
 
     public void OnStartGameClicked()
     {
@@ -121,7 +121,7 @@ public class UIManager : MonoBehaviour
         exitPopup.SetActive(false);
     }
 
-    // SETTINGS
+    // Settings Hanlder
 
     public void OnMusicToggleChanged(bool isOn)
     {
@@ -142,46 +142,32 @@ public class UIManager : MonoBehaviour
         //    PlayerPrefs.GetInt("SFXEnabled", 1) == 1;
     }
 
-    // STATS
+    // Stats Handler
 
     void LoadStats()
     {
-        int totalGames =
-            PlayerPrefs.GetInt("TotalGames", 0);
+        int totalGames = PlayerPrefs.GetInt("TotalGames", 0);
 
-        int p1Wins =
-            PlayerPrefs.GetInt("Player1Wins", 0);
+        int p1Wins = PlayerPrefs.GetInt("Player1Wins", 0);
 
-        int p2Wins =
-            PlayerPrefs.GetInt("Player2Wins", 0);
+        int p2Wins = PlayerPrefs.GetInt("Player2Wins", 0);
 
-        int draws =
-            PlayerPrefs.GetInt("Draws", 0);
+        int draws = PlayerPrefs.GetInt("Draws", 0);
 
-        float totalDuration =
-            PlayerPrefs.GetFloat("TotalDuration", 0f);
+        float totalDuration = PlayerPrefs.GetFloat("TotalDuration", 0f);
 
-        float avgDuration =
-            totalGames > 0
-            ? totalDuration / totalGames
-            : 0f;
+        float avgDuration = totalGames > 0 ? totalDuration / totalGames : 0f;
 
-        totalGamesText.text =
-            "Total Games: " + totalGames;
+        totalGamesText.text = "Total Games: " + totalGames;
 
-        player1WinsText.text =
-            "Player 1 Wins: " + p1Wins;
+        player1WinsText.text = "Player 1 Wins: " + p1Wins;
 
-        player2WinsText.text =
-            "Player 2 Wins: " + p2Wins;
+        player2WinsText.text = "Player 2 Wins: " + p2Wins;
+            
 
-        drawsText.text =
-            "Draws: " + draws;
+        drawsText.text = "Draws: " + draws;
 
-        avgDurationText.text =
-            "Avg Duration: "
-            + avgDuration.ToString("F1")
-            + " sec";
+        avgDurationText.text = "Avg Duration: " + avgDuration.ToString("F1") + " sec";
     }
 
     void CloseAllPopups()

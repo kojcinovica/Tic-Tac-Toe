@@ -3,11 +3,13 @@ using UnityEngine.UI;
 
 public class AudioSettingsUI : MonoBehaviour
 {
+    // Need implementation
     [Header("Music")]
     public Image musicButtonImage;
     public Color musicOnColor = Color.green;
     public Color musicOffColor = Color.red;
 
+    // Need implementation 
     [Header("SFX")]
     public Image sfxButtonImage;
     public Color sfxOnColor = Color.green;
@@ -21,18 +23,14 @@ public class AudioSettingsUI : MonoBehaviour
     {
     }
 
-    // =========================
-    // MUSIC
-    // =========================
+   // Music Toggler
     public void ToggleMusic()
     {
         bool current = AudioManager.Instance.IsMusicEnabled();
         AudioManager.Instance.SetMusic(!current);
     }
 
-    // =========================
-    // SFX
-    // =========================
+    // SFX Toggler
     public void ToggleSFX()
     {
         bool current = AudioManager.Instance.IsSFXEnabled();
@@ -44,8 +42,6 @@ public class AudioSettingsUI : MonoBehaviour
 
     }
 
-    // =========================
-    // UI UPDATE
-    // =========================
+   
    
 }
