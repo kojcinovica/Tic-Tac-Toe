@@ -33,18 +33,11 @@ public class ThemeManager : MonoBehaviour
     {
         selectedThemeIndex = index;
 
-        PlayerPrefs.SetInt(
-            "ThemeIndex",
-            index
-        );
+        PlayerPrefs.SetInt("ThemeIndex",index);
     }
 
     void LoadTheme()
     {
-        selectedThemeIndex =
-            PlayerPrefs.GetInt(
-                "ThemeIndex",
-                0
-            );
+        selectedThemeIndex =PlayerPrefs.GetInt("ThemeIndex",0);
     }
 }

@@ -52,9 +52,7 @@ public class AudioManager : MonoBehaviour
         PlayMusicForScene();
     }
 
-    // =========================
-    // MUSIC
-    // =========================
+    // Music Hanlder
 
     void PlayMusicForScene()
     {
@@ -79,7 +77,7 @@ public class AudioManager : MonoBehaviour
     if (musicSource.clip == clip)
     {
         if (!musicSource.isPlaying)
-            musicSource.Play(); // 🔥 this fixes your issue
+            musicSource.Play(); 
         return;
     }
 
@@ -88,9 +86,7 @@ public class AudioManager : MonoBehaviour
     musicSource.Play();
 }
 
-    // =========================
-    // SFX
-    // =========================
+    // SFX Handler
 
     public void PlayButton()
     {
@@ -120,17 +116,13 @@ public class AudioManager : MonoBehaviour
         sfxSource.PlayOneShot(clip);
     }
 
-    // =========================
-    // SETTINGS
-    // =========================
+    // Settings Handler
 
     public void SetMusic(bool enabled)
     {
         musicEnabled = enabled;
 
-        PlayerPrefs.SetInt(
-            "MusicEnabled",
-            enabled ? 1 : 0);
+        PlayerPrefs.SetInt("MusicEnabled",enabled ? 1 : 0);
 
         if (enabled)
             PlayMusicForScene();
@@ -142,9 +134,7 @@ public class AudioManager : MonoBehaviour
     {
         sfxEnabled = enabled;
 
-        PlayerPrefs.SetInt(
-            "SFXEnabled",
-            enabled ? 1 : 0);
+        PlayerPrefs.SetInt("SFXEnabled",enabled ? 1 : 0);
     }
 
     void LoadSettings()
@@ -161,11 +151,9 @@ public class AudioManager : MonoBehaviour
         }
 
         // Load saved settings
-        musicEnabled =
-            PlayerPrefs.GetInt("Music") == 1;
+        musicEnabled = PlayerPrefs.GetInt("Music") == 1;
 
-        sfxEnabled =
-            PlayerPrefs.GetInt("SFX") == 1;
+        sfxEnabled = PlayerPrefs.GetInt("SFX") == 1;
     }
 
     public bool IsMusicEnabled()
