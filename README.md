@@ -1,8 +1,12 @@
 **Tic Tac Toe**
 
+**Version**
+v1.0 - release date 26.04.2026.
+
 **Overview**
 
 A simple Tic Tac Toe game built in Unity. Play against another player locally and enjoy a clean, minimal interface with classic gameplay.
+
 
 **Features**
 - 2-player local gameplay (Player X vs Player O)
@@ -22,7 +26,8 @@ Mouse: Click or tap on a grid cell to place your mark (X or O)
 
 Feel free to try it on: [itch.io](https://strawberryjamteam.itch.io/tic-tac-toe)
 
+Special thanks to [Two Desperados](https://twodesperados.com/) for graphics, music, and sound effects.
+
 _Known issues:_
 - Tap on the Music / SFX button, does not change a buttons color [indicator for mute] -> Music/SFX can be muted and reanabled
-
 - Tap on the Theme button, does not change a buttons color [indicator for selected theme] -> Theme can be changed anyway
