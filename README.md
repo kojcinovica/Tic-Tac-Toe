@@ -21,3 +21,8 @@ Mouse: Click or tap on a grid cell to place your mark (X or O)
 - If all cells are filled and no player has three in a row, the game ends in a draw.
 
 Feel free to try it on: [itch.io](https://strawberryjamteam.itch.io/tic-tac-toe)
+
+_Known issues:_
+- Tap on the Music / SFX button, does not change a buttons color [indicator for mute] -> Music/SFX can be muted and reanabled
+
+- Tap on the Theme button, does not change a buttons color [indicator for selected theme] -> Theme can be changed anyway
